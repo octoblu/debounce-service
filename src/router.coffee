@@ -5,7 +5,7 @@ class Router
   route: (app) =>
     debounceController = new DebounceController {@debounceService}
 
-    app.get '/hello', debounceController.hello
-    # e.g. app.put '/resource/:id', someController.update
+    app.all '/debounce/:id', debounceController.debounce
+    app.all '/debounce/:id/wait/:wait', debounceController.debounce
 
 module.exports = Router

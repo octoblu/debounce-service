@@ -1,5 +1,5 @@
 class DebounceService
-  doHello: ({hasError}, callback) =>
+  doDebounce: ({hasError}, callback) =>
     return callback @_createError(755, 'Not enough dancing!') if hasError?
     callback()
 
