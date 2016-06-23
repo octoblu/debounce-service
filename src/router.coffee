@@ -1,11 +1,6 @@
-DebounceController = require './controllers/debounce-controller'
-
 class Router
-  constructor: ({@debounceService}) ->
+  constructor: ({@debounceController}) ->
   route: (app) =>
-    debounceController = new DebounceController {@debounceService}
-
-    app.all '/debounce/:id', debounceController.debounce
-    app.all '/debounce/:id/wait/:wait', debounceController.debounce
+    app.all '/debounce/:id', @debounceController.debounce
 
 module.exports = Router
