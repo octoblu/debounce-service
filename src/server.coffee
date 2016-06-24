@@ -10,7 +10,7 @@ DebounceService    = require './services/debounce-service'
 DebounceController = require './controllers/debounce-controller'
 
 class Server
-  constructor: ({@disableLogging, @port}, {})->
+  constructor: ({@disableLogging, @port, @waitDefault}, {})->
 
   address: =>
     @server.address()
@@ -35,7 +35,7 @@ class Server
     app.options '*', cors()
 
     debounceService = new DebounceService
-    debounceController = new DebounceController {debounceService}
+    debounceController = new DebounceController {debounceService, @waitDefault}
     router = new Router {debounceController}
 
     router.route app

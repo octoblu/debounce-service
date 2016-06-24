@@ -1,9 +1,8 @@
 {
   "name": "debounce-service",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Put some description here",
-  "keywords": [
-  ],
+  "keywords": [],
   "homepage": "https://github.com/octoblu/deboun",
   "bugs": "https://github.com/octoblu/deboun/issues",
   "author": {
@@ -25,7 +24,7 @@
     "mocha": "^2.3.4",
     "mocha-istanbul": "^0.2.0",
     "request": "^2.66.0",
-    "@octoblu/shmock": "^0.7.2",
+    "shmock": "^0.8.1",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
   },
@@ -40,8 +39,7 @@
     "lodash": "^3.10.1",
     "morgan": "^1.6.1"
   },
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "engines": {
     "node": ">=0.8.0",
     "npm": ">=1.2.10"

@@ -43,15 +43,18 @@ class DebounceService
       headers = @filterHeaders headers
       headers['response-status-code'] = response.statusCode
       responseOptions = _.merge({ method:'POST', headers, body }, responseOptions)
+      unless responseOptions.json or _.isString responseOptions.body
+        responseOptions.body = JSON.stringify responseOptions.body
+
       debug {responseOptions}
       request responseOptions, (error, response, body) =>
-        debug {error: error?.message, code: response.statusCode, body}
+        debug {error: error?.message, code: response?.statusCode, body}
 
   doDebounce: (id, options, callback) =>
     {debounce} = options
-    return callback @_createError(422, 'Id not defined') unless id?
-    return callback @_createError(422, 'Debounce params not defined') unless _.isObject debounce
-    return callback @_createError(422, 'Request url not defined') unless options.requestOptions?.url?
+    return callback @_createError(417, 'Id not defined') unless id?
+    return callback @_createError(417, 'Debounce params not defined') unless _.isObject debounce
+    return callback @_createError(417, 'Request url not defined') unless options.requestOptions?.url?
 
     @debounceRequests[id] ?= {}
     doUpdate = !@debounceRequests[id].options?.service?.noUpdate

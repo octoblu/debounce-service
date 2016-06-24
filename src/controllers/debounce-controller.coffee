@@ -22,6 +22,7 @@ class DebounceController
     debounce = {}
     requestOptions = {}
     responseOptions = {}
+    debug {bodyParser, headers:request.headers}
 
     headers = @debounceService.filterHeaders request.headers
 
@@ -34,12 +35,12 @@ class DebounceController
 
     debounce.wait ?= @waitDefault
 
-    if bodyParser.isUrlEncoded
+    if bodyParser?.isUrlEncoded
       requestOptions.form ?= body
-    else
+    else unless _.isEmpty body
       requestOptions.body ?= body
 
-    requestOptions.json ?= bodyParser.isJson
+    requestOptions.json ?= bodyParser?.isJson
     requestOptions.headers ?= headers
     requestOptions.method ?= method
     requestOptions.qs ?= qs
